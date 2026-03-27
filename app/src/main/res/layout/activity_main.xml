@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sankofa SDK Example"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnTrackPurchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Track 'Purchase' Event"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnIdentifyUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Identify User"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnSetPerson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Person Data"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset Identity"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type below to test masked views:"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- This EditText should automatically be masked by Sankofa SDK during session replay -->
+    <EditText
+        android:id="@+id/etCreditCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter secret data (Auto-Masked)"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp"/>
+        
+    <TextView
+        android:id="@+id/tvCustomMask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This specific TextView has an explicit mask tag"
+        android:background="#f0f0f0"
+        android:padding="16dp"
+        android:tag="sankofa_mask" />
+
+</LinearLayout>
