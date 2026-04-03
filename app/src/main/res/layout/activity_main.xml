@@ -1,69 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal">
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sankofa SDK Example"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
-
-    <Button
-        android:id="@+id/btnTrackPurchase"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Track 'Purchase' Event"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btnIdentifyUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Identify User"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sankofa SDK Example"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp"/>
 
-    <Button
-        android:id="@+id/btnSetPerson"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Set Person Data"
-        android:layout_marginBottom="16dp"/>
+        <Button
+            android:id="@+id/btnNavCompose"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Launch Compose Stress Test"
+            android:backgroundTint="#0055FF"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp"/>
+            
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="XML Legacy Hooks"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/btnReset"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reset Identity"
-        android:layout_marginBottom="32dp"/>
+        <Button
+            android:id="@+id/btnTrackPurchase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Track 'Purchase' Event"
+            android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Type below to test masked views:"
-        android:layout_marginBottom="8dp"/>
+        <Button
+            android:id="@+id/btnIdentifyUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Identify User"
+            android:layout_marginBottom="16dp"/>
 
-    <!-- This EditText should automatically be masked by Sankofa SDK during session replay -->
-    <EditText
-        android:id="@+id/etCreditCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter secret data (Auto-Masked)"
-        android:inputType="textPassword"
-        android:layout_marginBottom="16dp"/>
-        
-    <TextView
-        android:id="@+id/tvCustomMask"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This specific TextView has an explicit mask tag"
-        android:background="#f0f0f0"
-        android:padding="16dp"
-        android:tag="sankofa_mask" />
+        <Button
+            android:id="@+id/btnSetPerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Person Data"
+            android:layout_marginBottom="16dp"/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reset Identity"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Animated Element to force continuous onDraw events -->
+        <View
+            android:id="@+id/animatedPulsarView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="32dp"
+            android:background="#FF4444" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type below to test masked views:"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- This EditText should automatically be masked by Sankofa SDK during session replay -->
+        <EditText
+            android:id="@+id/etCreditCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter secret data (Auto-Masked)"
+            android:inputType="textPassword"
+            android:layout_marginBottom="16dp"/>
+            
+        <TextView
+            android:id="@+id/tvCustomMask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This specific TextView has an explicit mask tag"
+            android:background="#f0f0f0"
+            android:padding="16dp"
+            android:tag="sankofa_mask"
+            android:layout_marginBottom="300dp"/> <!-- Very deep margin to force long scroll depth -->
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bottom Deep Scroll Button"
+            android:layout_marginBottom="100dp"/>
+
+    </LinearLayout>
+</ScrollView>
