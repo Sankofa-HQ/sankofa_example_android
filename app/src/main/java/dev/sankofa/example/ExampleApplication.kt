@@ -13,7 +13,7 @@ class ExampleApplication : Application() {
             context = this,
             apiKey = "sk_test_b25f965d194d55bd071fb23921401e7c",
             config = SankofaConfig(
-                endpoint = "http://192.168.0.198:8080", // "http://10.0.2.2:8080",
+                endpoint = "http://192.168.1.241:8080", // "http://10.0.2.2:8080",
                 recordSessions = true,
                 maskAllInputs = true,
                 debug = true,
