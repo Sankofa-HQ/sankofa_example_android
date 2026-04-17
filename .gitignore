@@ -31,3 +31,16 @@ sankofa/build/test-results/
 
 # ProGuard mapping files (generated per release)
 *.map
+
+# ── Sankofa Deploy ─────────────────────────────────────────────
+# Sankofa Deploy — CLI credentials (never commit)
+.sankofa.json
+build/ota-stage/
+build/distribution/
+build/xcodebuild.log
+build/xcodebuild-archive.log
+build/xcodebuild-export.log
+build/*.ios.zip
+build/*.ota.zip
+build/*.app.zip
+# ── /Sankofa Deploy ────────────────────────────────────────────
