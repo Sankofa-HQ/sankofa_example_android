@@ -19,6 +19,41 @@
             android:textStyle="bold"
             android:layout_marginBottom="32dp"/>
 
+        <!-- Maintenance banner — visibility driven in code by the
+             `maintenance_banner_enabled` remote config. -->
+        <TextView
+            android:id="@+id/maintenanceBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="⚠️  Maintenance window — see Flags Lab for details."
+            android:textColor="#FBBF24"
+            android:background="#40F59E0B"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Flag-driven CTA — label + colour flip at onCreate time
+             using the `checkout_cta_variant` A/B/C flag. -->
+        <Button
+            android:id="@+id/btnFlagCta"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Fire showcase event"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#8B5CF6"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnOpenFlagsLab"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Open Flags &amp; Config Lab"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#F5A623"
+            android:layout_marginBottom="16dp"/>
+
         <Button
             android:id="@+id/btnNavCompose"
             android:layout_width="match_parent"

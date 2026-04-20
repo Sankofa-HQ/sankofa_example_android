@@ -3,6 +3,8 @@ package dev.sankofa.example
 import android.app.Application
 import dev.sankofa.sdk.Sankofa
 import dev.sankofa.sdk.SankofaConfig
+import dev.sankofa.sdk.remoteconfig.SankofaRemoteConfig
+import dev.sankofa.sdk.switchmod.SankofaSwitch
 
 class ExampleApplication : Application() {
     override fun onCreate() {
@@ -21,5 +23,14 @@ class ExampleApplication : Application() {
                 batchSize = 5
             )
         )
+
+        // Switch + Config — init seeds bundled defaults and registers
+        // with the Traffic Cop so the first handshake routes flag /
+        // config payloads straight into these singletons. Calls before
+        // the handshake lands return the bundled defaults below, which
+        // keeps the Lab screen + MainActivity banner rendering on
+        // first launch.
+        SankofaSwitch.init(this, DemoFlag.defaults)
+        SankofaRemoteConfig.init(this, DemoConfig.defaults)
     }
 }
