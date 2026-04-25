@@ -3,6 +3,7 @@ package dev.sankofa.example
 import android.app.Application
 import dev.sankofa.sdk.Sankofa
 import dev.sankofa.sdk.SankofaConfig
+import dev.sankofa.sdk.catchmod.SankofaCatch
 import dev.sankofa.sdk.remoteconfig.SankofaRemoteConfig
 import dev.sankofa.sdk.switchmod.SankofaSwitch
 
@@ -32,5 +33,15 @@ class ExampleApplication : Application() {
         // first launch.
         SankofaSwitch.init(this, DemoFlag.defaults)
         SankofaRemoteConfig.init(this, DemoConfig.defaults)
+
+        // Catch — installs the chained uncaught-exception handler and
+        // the ANR watcher. Without this the Crash Gallery activity's
+        // scenarios would still crash the process but wouldn't report.
+        SankofaCatch.init(
+            context = applicationContext,
+            environment = "live",
+            release = "sankofa-example-android@1.0",
+            appVersion = "1.0",
+        )
     }
 }

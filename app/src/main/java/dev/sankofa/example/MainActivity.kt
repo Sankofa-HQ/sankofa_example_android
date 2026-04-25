@@ -70,6 +70,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ComposeStressActivity::class.java))
         }
 
+        // Launch Crash Gallery
+        findViewById<Button>(R.id.btnOpenCrashGallery).setOnClickListener {
+            startActivity(Intent(this, CrashGalleryActivity::class.java))
+        }
+
         findViewById<Button>(R.id.btnTrackPurchase).setOnClickListener {
             Sankofa.track(
                 "purchase_completed",

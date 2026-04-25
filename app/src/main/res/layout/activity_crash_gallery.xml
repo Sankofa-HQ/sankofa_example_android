@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F0F14"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sankofa Catch — Crash Gallery"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Each button triggers a distinct failure mode. Unhandled throws crash the process — restart the app to continue after those."
+            android:textColor="#94A3B8"
+            android:textSize="12sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- 1. NullPointerException -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="1. NullPointerException" />
+            <TextView style="@style/CrashCardDesc" android:text="Invoke a method on a null receiver. Unhandled." />
+            <Button android:id="@+id/btnCrashNpe" style="@style/CrashCardButton" android:text="Throw NPE" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 2. ClassCastException -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="2. ClassCastException" />
+            <TextView style="@style/CrashCardDesc" android:text="Downcast Any to the wrong type." />
+            <Button android:id="@+id/btnCrashCce" style="@style/CrashCardButton" android:text="Throw CCE" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 3. IndexOutOfBoundsException -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="3. IndexOutOfBoundsException" />
+            <TextView style="@style/CrashCardDesc" android:text="Access element 99 on a 3-item list." />
+            <Button android:id="@+id/btnCrashIoobe" style="@style/CrashCardButton" android:text="Throw IOOBE" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 4. ArithmeticException -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="4. ArithmeticException" />
+            <TextView style="@style/CrashCardDesc" android:text="Integer division by zero." />
+            <Button android:id="@+id/btnCrashDivZero" style="@style/CrashCardButton" android:text="Divide by zero" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 5. IllegalStateException -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="5. IllegalStateException" />
+            <TextView style="@style/CrashCardDesc" android:text="Operation performed on an uninitialised session." />
+            <Button android:id="@+id/btnCrashIse" style="@style/CrashCardButton" android:text="Throw ISE" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 6. IllegalArgumentException -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="6. IllegalArgumentException" />
+            <TextView style="@style/CrashCardDesc" android:text="User input fails require() validation." />
+            <Button android:id="@+id/btnCrashIae" style="@style/CrashCardButton" android:text="Throw IAE" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 7. NumberFormatException -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="7. NumberFormatException" />
+            <TextView style="@style/CrashCardDesc" android:text="Parse &quot;banana&quot; as Int." />
+            <Button android:id="@+id/btnCrashNfe" style="@style/CrashCardButton" android:text="Throw NFE" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 8. StackOverflowError -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="8. StackOverflowError" />
+            <TextView style="@style/CrashCardDesc" android:text="Unbounded self-recursion. Unhandled." />
+            <Button android:id="@+id/btnCrashSoe" style="@style/CrashCardButton" android:text="Infinite recursion" android:backgroundTint="#F59E0B" />
+        </LinearLayout>
+
+        <!-- 9. OutOfMemoryError -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="9. OutOfMemoryError" />
+            <TextView style="@style/CrashCardDesc" android:text="Allocate a 2 GB byte array. WARNING: kills the process." />
+            <Button android:id="@+id/btnCrashOom" style="@style/CrashCardButton" android:text="Trigger OOM" android:backgroundTint="#F59E0B" />
+        </LinearLayout>
+
+        <!-- 10. Thread uncaught -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="10. Background thread uncaught" />
+            <TextView style="@style/CrashCardDesc" android:text="Throw from a background Thread{}.start() — exercises the chained handler." />
+            <Button android:id="@+id/btnCrashThread" style="@style/CrashCardButton" android:text="Throw off main thread" android:backgroundTint="#DC2626" />
+        </LinearLayout>
+
+        <!-- 11. Custom business error -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="11. PaymentDeclinedException (handled)" />
+            <TextView style="@style/CrashCardDesc" android:text="Manual captureException with fingerprint + tags + extra. Does NOT crash." />
+            <Button android:id="@+id/btnCrashPayment" style="@style/CrashCardButton" android:text="Capture payment decline" android:backgroundTint="#8B5CF6" />
+        </LinearLayout>
+
+        <!-- 12. captureMessage warning -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="12. captureMessage (warning)" />
+            <TextView style="@style/CrashCardDesc" android:text="Non-error signal. Does NOT crash." />
+            <Button android:id="@+id/btnCrashMessage" style="@style/CrashCardButton" android:text="Capture warning message" android:backgroundTint="#2563EB" />
+        </LinearLayout>
+
+        <!-- 13. ANR simulation -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="13. ANR simulation" />
+            <TextView style="@style/CrashCardDesc" android:text="Sleeps main thread for 6s. WARNING: will show Android's ANR dialog — tap 'Wait'." />
+            <Button android:id="@+id/btnCrashAnr" style="@style/CrashCardButton" android:text="Freeze main thread 6s" android:backgroundTint="#F59E0B" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/crashStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="14dp"
+            android:background="#1A1A2E"
+            android:textColor="#FDA4AF"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:text="ready — tap any card to fire a scenario" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+</ScrollView>
