@@ -125,3 +125,26 @@ data class DemoPricingTier(
         }
     }
 }
+
+// Canonical Pulse demo survey IDs — match `seed_pulse` server seed
+// and the IDs hard-coded in the iOS / Flutter / Web / RN examples.
+// One server-side publish drives every client; keep these stable.
+object DemoSurvey {
+    const val NPS_AFTER_CHECKOUT = "psv_demo_nps_checkout"
+    const val CSAT_SUPPORT       = "psv_demo_csat_support"
+    const val PRODUCT_RESEARCH   = "psv_demo_product_research"
+
+    val all = listOf(NPS_AFTER_CHECKOUT, CSAT_SUPPORT, PRODUCT_RESEARCH)
+
+    val titles = mapOf(
+        NPS_AFTER_CHECKOUT to "Post-checkout NPS",
+        CSAT_SUPPORT       to "Support CSAT",
+        PRODUCT_RESEARCH   to "Pro product research",
+    )
+
+    val descriptions = mapOf(
+        NPS_AFTER_CHECKOUT to "11-point NPS with branching follow-up. Sampled at 50%.",
+        CSAT_SUPPORT       to "5-point CSAT after a closed support ticket.",
+        PRODUCT_RESEARCH   to "Multi-question research panel, gated to plan = pro.",
+    )
+}

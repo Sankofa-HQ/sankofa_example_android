@@ -4,6 +4,7 @@ import android.app.Application
 import dev.sankofa.sdk.Sankofa
 import dev.sankofa.sdk.SankofaConfig
 import dev.sankofa.sdk.catchmod.SankofaCatch
+import dev.sankofa.sdk.pulse.SankofaPulse
 import dev.sankofa.sdk.remoteconfig.SankofaRemoteConfig
 import dev.sankofa.sdk.switchmod.SankofaSwitch
 
@@ -43,5 +44,11 @@ class ExampleApplication : Application() {
             release = "sankofa-example-android@1.0",
             appVersion = "1.0",
         )
+
+        // Pulse — surveys (NPS, CSAT, custom). register() pulls the
+        // apiKey + endpoint from Sankofa.init's cache, so it must
+        // run AFTER Sankofa.init. The PulseLab activity below
+        // surfaces a "not registered" message if this returns false.
+        SankofaPulse.register(applicationContext)
     }
 }

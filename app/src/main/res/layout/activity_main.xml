@@ -72,6 +72,16 @@
             android:backgroundTint="#DC2626"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnOpenPulseLab"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Open Pulse Lab"
+            android:backgroundTint="#06B6D4"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
             android:layout_marginBottom="32dp"/>
             
         <TextView

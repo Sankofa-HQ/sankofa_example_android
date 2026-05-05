@@ -75,6 +75,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, CrashGalleryActivity::class.java))
         }
 
+        // Launch Pulse Lab
+        findViewById<Button>(R.id.btnOpenPulseLab).setOnClickListener {
+            startActivity(Intent(this, PulseLabActivity::class.java))
+        }
+
         findViewById<Button>(R.id.btnTrackPurchase).setOnClickListener {
             Sankofa.track(
                 "purchase_completed",
