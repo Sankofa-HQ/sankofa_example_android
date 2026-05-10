@@ -3,7 +3,6 @@ package dev.sankofa.example
 import android.app.Application
 import dev.sankofa.sdk.Sankofa
 import dev.sankofa.sdk.SankofaConfig
-import dev.sankofa.sdk.catchmod.SankofaCatch
 import dev.sankofa.sdk.pulse.SankofaPulse
 import dev.sankofa.sdk.remoteconfig.SankofaRemoteConfig
 import dev.sankofa.sdk.switchmod.SankofaSwitch
@@ -12,7 +11,17 @@ class ExampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // Initialize Sankofa SDK with local server defaults
+        // Switch + Config — init seeds bundled defaults and registers
+        // with the Traffic Cop. Run BEFORE Sankofa.init so the
+        // auto-discovered flag/config snapshots Catch attaches to its
+        // events on the very first crash already see something useful.
+        SankofaSwitch.init(this, DemoFlag.defaults)
+        SankofaRemoteConfig.init(this, DemoConfig.defaults)
+
+        // One-line init. enableCatch=true (default) auto-installs the
+        // chained Thread.UncaughtExceptionHandler + ANR watcher and
+        // wires Switch/Config snapshots onto every captured event —
+        // no separate `SankofaCatch.init` call needed.
         Sankofa.init(
             context = this,
             apiKey = "sk_test_b25f965d194d55bd071fb23921401e7c",
@@ -22,27 +31,10 @@ class ExampleApplication : Application() {
                 maskAllInputs = true,
                 debug = true,
                 flushIntervalSeconds = 10,
-                batchSize = 5
+                batchSize = 5,
+                release = "sankofa-example-android@1.0",
+                appVersion = "1.0",
             )
-        )
-
-        // Switch + Config — init seeds bundled defaults and registers
-        // with the Traffic Cop so the first handshake routes flag /
-        // config payloads straight into these singletons. Calls before
-        // the handshake lands return the bundled defaults below, which
-        // keeps the Lab screen + MainActivity banner rendering on
-        // first launch.
-        SankofaSwitch.init(this, DemoFlag.defaults)
-        SankofaRemoteConfig.init(this, DemoConfig.defaults)
-
-        // Catch — installs the chained uncaught-exception handler and
-        // the ANR watcher. Without this the Crash Gallery activity's
-        // scenarios would still crash the process but wouldn't report.
-        SankofaCatch.init(
-            context = applicationContext,
-            environment = "live",
-            release = "sankofa-example-android@1.0",
-            appVersion = "1.0",
         )
 
         // Pulse — surveys (NPS, CSAT, custom). register() pulls the
