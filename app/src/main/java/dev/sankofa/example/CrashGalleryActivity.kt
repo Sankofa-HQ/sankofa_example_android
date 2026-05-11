@@ -233,6 +233,54 @@ class CrashGalleryActivity : AppCompatActivity() {
             Thread.sleep(6_500)
             status.text = "main thread resumed"
         }
+
+        // 14. Phase B — withScope. Tags + level + extras layered onto
+        //     ONE capture only; the global scope (set up in onCreate
+        //     above via Sankofa.setUser/setTags) is untouched.
+        wire(R.id.btnCrashWithScope, "phase_b_with_scope") {
+            Sankofa.withScope { scope ->
+                scope.setTag("checkout_step", "payment")
+                scope.setTag("payment_method", "stripe")
+                scope.setExtra("cart_id", "cart_8x92Lq")
+                scope.setExtra("cart_value_cents", 4900)
+                scope.setLevel(CatchLevel.WARNING)
+                scope.setFingerprint(listOf("checkout", "payment", "manual"))
+                try {
+                    throw IllegalStateException("payment gateway timeout — retried 3x")
+                } catch (e: Throwable) {
+                    // Only this capture carries the scope's extras + level.
+                    Sankofa.captureException(e)
+                }
+            }
+            // Subsequent captures lose the scope.
+            Sankofa.captureMessage("post-scope event — no checkout_step tag")
+            status.text = "fired two events: scoped + global"
+        }
+
+        // 15. Phase B — beforeSend demonstration. The hook configured
+        //     in ExampleApplication.kt's `SankofaConfig(beforeSend = ...)`
+        //     drops "[noise]" messages and scrubs `user_email` from
+        //     extras. The two events below exercise both branches.
+        wire(R.id.btnCrashBeforeSend, "phase_b_before_send") {
+            // 1. Dropped by beforeSend — "[noise]" marker triggers
+            //    the drop branch. No event should appear in the
+            //    dashboard for this call.
+            Sankofa.captureMessage("[noise] framework setState after dispose — drop me")
+
+            // 2. PII scrubbed by beforeSend — `user_email` is rewritten
+            //    to "[redacted]" before the event leaves the device.
+            Sankofa.captureMessage(
+                "checkout failure — beforeSend should scrub user_email",
+                CatchCaptureOptions(
+                    level = CatchLevel.INFO,
+                    extra = mapOf(
+                        "user_email" to "ada@example.com",
+                        "note" to "beforeSend should redact user_email",
+                    ),
+                ),
+            )
+            status.text = "fired drop+scrub events — check dashboard"
+        }
     }
 
     private fun infiniteRecursion(depth: Int): Int {
