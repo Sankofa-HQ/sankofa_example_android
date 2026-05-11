@@ -7,10 +7,12 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,7 +50,29 @@ class ComposeStressActivity : ComponentActivity() {
 
 @Composable
 fun StressTestList(modifier: Modifier = Modifier) {
+    val listState = rememberLazyListState()
+
+    // 🚀 Compose scroll-offset tagging — `LazyColumn` draws into a
+    // single `AndroidComposeView` with no per-scrollable child View,
+    // so without this registration the touch dispatcher's classic-View
+    // walk returns 0 and every below-the-fold tap collapses to the
+    // first viewport in the heatmap panorama. Registering here makes
+    // taps + replay frames carry the correct Y offset.
+    //
+    // Estimated item height is a rough average — exact pixel offset for
+    // variable-height items is intentionally not exposed by Compose's
+    // lazy lists; this approximation is good enough for heatmap density.
+    DisposableEffect(listState) {
+        val handle = Sankofa.tagScrollContainer {
+            val approxItemPx = 120
+            listState.firstVisibleItemIndex * approxItemPx +
+                listState.firstVisibleItemScrollOffset
+        }
+        onDispose { handle.remove() }
+    }
+
     LazyColumn(
+        state = listState,
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp)
     ) {

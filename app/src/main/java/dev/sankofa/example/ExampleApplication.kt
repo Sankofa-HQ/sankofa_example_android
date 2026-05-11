@@ -34,6 +34,24 @@ class ExampleApplication : Application() {
                 batchSize = 5,
                 release = "sankofa-example-android@1.0",
                 appVersion = "1.0",
+                // 🚀 Phase B — beforeSend hook. Runs AFTER an event is
+                // composed but BEFORE it's enqueued. Return null to
+                // drop entirely; return the event (possibly mutated)
+                // to ship it. Throws swallowed.
+                //   - Drop "[noise]" messages (framework warnings
+                //     you can't fix).
+                //   - Scrub `user_email` from extras so PII doesn't
+                //     leak to the dashboard.
+                beforeSend = { event ->
+                    when {
+                        event.message?.contains("[noise]") == true -> null
+                        event.extra?.containsKey("user_email") == true -> event.copy(
+                            extra = event.extra!!.toMutableMap()
+                                .also { it["user_email"] = "[redacted]" }
+                        )
+                        else -> event
+                    }
+                },
             )
         )
 
