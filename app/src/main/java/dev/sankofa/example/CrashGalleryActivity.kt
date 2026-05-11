@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import dev.sankofa.sdk.Sankofa
 import dev.sankofa.sdk.SankofaScreen
 import dev.sankofa.sdk.catchmod.CatchBreadcrumb
 import dev.sankofa.sdk.catchmod.CatchCaptureOptions

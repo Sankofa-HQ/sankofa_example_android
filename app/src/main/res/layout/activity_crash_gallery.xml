@@ -119,6 +119,20 @@
             <Button android:id="@+id/btnCrashAnr" style="@style/CrashCardButton" android:text="Freeze main thread 6s" android:backgroundTint="#F59E0B" />
         </LinearLayout>
 
+        <!-- 14. Phase B: withScope — temporary scope overlay -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="14. Phase B — withScope" />
+            <TextView style="@style/CrashCardDesc" android:text="Tags + level + extras attached to ONE capture only; the global scope is untouched." />
+            <Button android:id="@+id/btnCrashWithScope" style="@style/CrashCardButton" android:text="Capture with temporary scope" android:backgroundTint="#10B981" />
+        </LinearLayout>
+
+        <!-- 15. Phase B: beforeSend demonstration -->
+        <LinearLayout style="@style/CrashCard">
+            <TextView style="@style/CrashCardTitle" android:text="15. Phase B — beforeSend hook" />
+            <TextView style="@style/CrashCardDesc" android:text="Wired in ExampleApplication.kt — drops [noise] messages and scrubs user_email. This button fires events the hook can drop or scrub." />
+            <Button android:id="@+id/btnCrashBeforeSend" style="@style/CrashCardButton" android:text="Fire scrubbable + droppable events" android:backgroundTint="#10B981" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/crashStatus"
             android:layout_width="match_parent"
