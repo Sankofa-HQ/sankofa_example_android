@@ -109,5 +109,18 @@ class MainActivity : AppCompatActivity() {
             Sankofa.reset()
             Toast.makeText(this, "Identity reset (Anonymous)", Toast.LENGTH_SHORT).show()
         }
+
+        // Disconnect → wipe persisted credentials and return to the
+        // connect screen. The SDK keeps running in-memory until the
+        // process is killed; the next cold launch starts fresh,
+        // exactly like the iOS / web examples.
+        findViewById<Button>(R.id.btnDisconnect).setOnClickListener {
+            SankofaConnection.disconnect()
+            Toast.makeText(this, "Disconnected — returning to connect screen", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ConnectActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            })
+            finish()
+        }
     }
 }

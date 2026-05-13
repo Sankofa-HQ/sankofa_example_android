@@ -13,15 +13,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         
+        <!-- LAUNCHER is the connect screen. It bounces straight to
+             MainActivity when credentials are already persisted, so
+             returning users only ever see this on first run / after
+             a Disconnect. Mirrors the web example's ApiKeyGate UX. -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ConnectActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
+        <activity android:name=".MainActivity" />
         <activity android:name=".ComposeStressActivity" />
         <activity android:name=".FlagsLabActivity" />
         <activity android:name=".CrashGalleryActivity" />

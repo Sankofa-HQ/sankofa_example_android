@@ -117,6 +117,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Reset Identity"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnDisconnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Disconnect &amp; forget API key"
+            android:textColor="#F87171"
             android:layout_marginBottom="32dp"/>
 
         <!-- Animated Element to force continuous onDraw events -->
