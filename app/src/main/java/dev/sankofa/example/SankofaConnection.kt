@@ -28,7 +28,8 @@ object SankofaConnection {
     private const val PREFS_NAME = "sankofa_example_connection"
     private const val KEY_API_KEY = "api_key"
     private const val KEY_ENDPOINT = "endpoint"
-    private const val DEFAULT_ENDPOINT = "http://localhost:8080"
+    private const val DEFAULT_ENDPOINT = "https://api.sankofa.dev"
+    private const val DEFAULT_API_KEY = "sk_live_4f3679b3311d935d8bb58d6cbeab9a57"
 
     private var prefs: SharedPreferences? = null
     private var initialised: Boolean = false
@@ -50,6 +51,9 @@ object SankofaConnection {
     fun isConnected(): Boolean = apiKey().isNotEmpty()
 
     fun apiKey(): String = prefs?.getString(KEY_API_KEY, "")?.trim().orEmpty()
+
+    /** The pre-filled key shown on the connect screen when none is saved. */
+    fun defaultApiKey(): String = DEFAULT_API_KEY
 
     fun endpoint(): String {
         val stored = prefs?.getString(KEY_ENDPOINT, "")?.trim().orEmpty()

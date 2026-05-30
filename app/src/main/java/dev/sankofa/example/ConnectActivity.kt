@@ -44,6 +44,12 @@ class ConnectActivity : AppCompatActivity() {
         // via "Disconnect" without re-typing the URL every time.
         edtEndpoint.setText(SankofaConnection.endpoint())
 
+        // Pre-fill the API key too — saved value if present, otherwise the
+        // built-in default so the example connects to the live server with a
+        // single tap. afterTextChanged fires automatically and renders the
+        // detected-environment pill.
+        edtApiKey.setText(SankofaConnection.apiKey().ifEmpty { SankofaConnection.defaultApiKey() })
+
         // Live env detection — same `sk_test_…` / `sk_live_…` rule
         // used across the SDK family. Just decorative; the server is
         // the source of truth for which environment the key maps to.
